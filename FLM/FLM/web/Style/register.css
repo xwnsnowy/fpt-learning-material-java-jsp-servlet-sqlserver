@@ -1,0 +1,42 @@
+
+/*Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+
+ 
+    Created on : May 14, 2023, 11:11:53 PM
+    Author     : Admin*/
+
+
+
+
+
+#alart{
+    color: red;
+    margin-top: 0px;
+    margin-bottom: 10px
+}
+#alartForSendCode{
+    color: red;
+    margin-top: 0px;
+    margin-bottom: 10px
+}
+#alartForSendCodeForMobile{
+    color: red;
+    margin-top: 0px;
+    margin-bottom: 10px
+}
+
+
+#registerSuccess{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+    margin-bottom: 20px;
+}
+
+#buttonRegisterWith{
+    background-color: #ffffff99;
+    opacity: 80%;
+    border: 0px;
+}

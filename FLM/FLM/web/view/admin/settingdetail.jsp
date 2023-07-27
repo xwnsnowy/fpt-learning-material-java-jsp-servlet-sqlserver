@@ -1,0 +1,230 @@
+<%-- 
+    Document   : accountList
+    Created on : May 23, 2023, 2:18:24 AM
+    Author     : Admin
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" >
+        <title>FLM_USER MANAGERMENT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Premium Bootstrap 4 Landing Page Template" >
+        <meta name="keywords" content="Appointment, Booking, System, Dashboard, Health" >
+        <meta name="author" content="Shreethemes" >
+        <meta name="email" content="support@shreethemes.in" >
+        <meta name="website" content="../../../../../../index.html" >
+        <meta name="Version" content="v1.2.0" >
+
+        <!-- favicon -->
+        <link rel="shortcut icon" href="../../assets/images/favicon.ico.png">
+        <!-- Bootstrap -->
+        <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+        <!-- simplebar -->
+        <link href="../../assets/css/simplebar.css" rel="stylesheet" type="text/css" >
+        <!-- Select2 -->
+        <link href="../../assets/css/select2.min.css" rel="stylesheet" >
+        <!-- Date picker -->
+        <link rel="stylesheet" href="../../assets/css/flatpickr.min.css">
+        <link href="../../assets/css/jquery.timepicker.min.css" rel="stylesheet" type="text/css" >
+        <!-- Icons -->
+        <link href="../../assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" >
+        <link href="../../assets/css/remixicon.css" rel="stylesheet" type="text/css" >
+        <link href="https://unicons.iconscout.com/release/v3.0.6/css/line.css"  rel="stylesheet">
+        <!-- Css -->
+        <link href="../../assets/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" >
+        <!--account css-->
+        <link rel="stylesheet" href="../../Style/Account.css">
+
+    </head>
+
+    <body>
+        <!-- Loader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Loader -->
+
+        <div class="page-wrapper doctris-theme toggled">
+            <%@include file="../common/sidebar.jsp" %>
+            <!-- sidebar-wrapper  -->
+
+            <!-- Start Page Content -->
+            <main class="page-content bg-light">
+                <%@include file="../common/headerforsidebar.jsp" %>
+                <!--Duy-->
+
+                <div class="container-fluid">
+                    <div class="layout-specing">
+                        <div class="d-md-flex justify-content-between">
+                            <div>
+                                <h5 class="mb-0">Setting Detail</h5>
+                            </div>
+                            <nav aria-label="breadcrumb" class="d-inline-block mt-4 mt-sm-0">
+                                <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
+                                    <li class="breadcrumb-item"><a href="/FLM_NEW/view/common/home">ADMIN</a></li>
+                                    <li class="breadcrumb-item"><a href="/FLM_NEW/view/admin/setting">Setting</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page" >Setting Detail</li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="modal-body p-3 pt-4">
+                            <form class="mt-4" action="settingdetail" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <input name="id" id="name" type="hidden" class="form-control" value="${data.id}">
+                                            <label class="form-label" style="font-weight: bold;">Name<span class="text-danger">*</span></label>
+                                            <input name="name" id="name" type="text" class="form-control" value="${data.name}" maxlength="15">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" style="font-weight: bold;">Type</label>
+                                            <select class="form-control time-during selectinput"name="type" id="type">
+                                                <c:forEach var="t" items="${type}" >
+                                                    <option>${t.type}</option> 
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" style="font-weight: bold;">Value</label>
+                                            <input name="value" id="value" type="text" class="form-control" value="${data.value}" maxlength="15">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" style="font-weight: bold;">Display Order</label>
+                                            <input name="displayOrder" id="displayOrder" type="number" class="form-control" value="${data.displayOrder}" min="1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" style="font-weight: bold;">Description</label>
+                                            <textarea name="Description" id="Description" rows="4" class="form-control" placeholder="Description :"></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <li class="d-flex">
+                                            <label class="form-label"  style="padding-right: 20px;font-size: 20px"> Active </label>
+                                            <div class="form-check form-switch">
+                                                <input style="height: 20px; width: 60px" class="form-check-input checkbox-row" type="checkbox" name="active" value="${data.getIs_active()}" <c:if test="${data.getIs_active() == '1'}">checked</c:if>/>
+                                                   <p id="isActive" class="badge bg-soft-warning"></p>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="submit" id="submit" name="send" class="btn btn-primary" value="Save changes">
+                                            <button class="btn btn-primary" value="Reset"
+                                                    onclick="document.getElementById('name').value = '';
+                                                            document.getElementById('type').value = '';
+                                                            document.getElementById('value').value = '';
+                                                            document.getElementById('displayOrder').value = '';
+                                                            document.getElementById('Description').value = '';">Reset</button>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </form><!--end form-->
+                            </div>
+                        </div>
+                    </div>
+            </div><!--end container-->
+
+            <!-- Footer Start -->
+        <%@include file="../common/footerforsidebar.jsp" %>
+        <!--end footer-->
+        <!-- End -->
+    </main>
+    <!--End page-content" -->
+</div>
+<!-- page-wrapper -->
+
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end bg-white shadow" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header p-4 border-bottom">
+        <h5 id="offcanvasRightLabel" class="mb-0">
+            <img src="../../assets/images/logo-dark.png" height="24" class="light-version" alt="">
+            <img src="../../assets/images/logo-light.png" height="24" class="dark-version" alt="">
+        </h5>
+        <button type="button" class="btn-close d-flex align-items-center text-dark" data-bs-dismiss="offcanvas" aria-label="Close"><i class="uil uil-times fs-4"></i></button>
+    </div>
+    <div class="offcanvas-body p-4 px-md-5">
+        <div class="row">
+            <div class="col-12">
+                <!-- Style switcher -->
+                <div id="style-switcher">
+                    <div>
+                        <ul class="text-center list-unstyled mb-0">
+                            <li class="d-grid"><a href="javascript:void(0)" class="rtl-version t-rtl-light" onclick="setTheme('style-rtl')"><img src="../../assets/images/layouts/light-dash-rtl.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">RTL Version</span></a></li>
+                            <li class="d-grid"><a href="javascript:void(0)" class="ltr-version t-ltr-light" onclick="setTheme('style')"><img src="../../assets/images/layouts/light-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">LTR Version</span></a></li>
+                            <li class="d-grid"><a href="javascript:void(0)" class="dark-rtl-version t-rtl-dark" onclick="setTheme('style-dark-rtl')"><img src="../../assets/images/layouts/dark-dash-rtl.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">RTL Version</span></a></li>
+                            <li class="d-grid"><a href="javascript:void(0)" class="dark-ltr-version t-ltr-dark" onclick="setTheme('style-dark')"><img src="../../assets/images/layouts/dark-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">LTR Version</span></a></li>
+                            <li class="d-grid"><a href="javascript:void(0)" class="dark-version t-dark mt-4" onclick="setTheme('style-dark')"><img src="../../assets/images/layouts/dark-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">Dark Version</span></a></li>
+                            <li class="d-grid"><a href="javascript:void(0)" class="light-version t-light mt-4" onclick="setTheme('style')"><img src="../../assets/images/layouts/light-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">Light Version</span></a></li>
+                            <li class="d-grid"><a href="../../landing/index.html" target="_blank" class="mt-4"><img src="../../assets/images/layouts/landing-light.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">Landing Demos</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end Style switcher -->
+            </div><!--end col-->
+        </div><!--end row-->
+    </div>
+
+    <div class="offcanvas-footer p-4 border-top text-center">
+        <ul class="list-unstyled social-icon mb-0">
+            <li class="list-inline-item mb-0"><a href="https://1.envato.market/doctris-template" target="_blank" class="rounded"><i class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://dribbble.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://www.facebook.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://www.instagram.com/shreethemes/" target="_blank" class="rounded"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://twitter.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="mailto:support@shreethemes.in" class="rounded"><i class="uil uil-envelope align-middle" title="email"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="../../../../../../index.html" target="_blank" class="rounded"><i class="uil uil-globe align-middle" title="website"></i></a></li>
+        </ul><!--end icon-->
+    </div>
+</div>
+<!-- Offcanvas End -->
+
+<!-- javascript -->
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<!-- simplebar -->
+<script src="../../assets/js/simplebar.min.js"></script>
+<!-- Select2 -->
+<script src="../../assets/js/select2.min.js"></script>
+<script src="../../assets/js/select2.init.js"></script>
+<!-- Datepicker -->
+<script src="../../assets/js/flatpickr.min.js"></script>
+<script src="../../assets/js/flatpickr.init.js"></script>
+<!-- Datepicker -->
+<script src="../../assets/js/jquery.timepicker.min.js"></script> 
+<script src="../../assets/js/timepicker.init.js"></script> 
+<!-- Icons -->
+<script src="../../assets/js/feather.min.js"></script>
+<!-- Main Js -->
+<script src="../../assets/js/app.js"></script>
+
+<!--setting list-->
+<script src="../../JS/SettingList.js"></script>
+</body>
+
+</html>
